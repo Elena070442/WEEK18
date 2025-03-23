@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планировщик задач</title>
+    <link rel="stylesheet" href="style/ToDoList_18.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Планировщик задач</h2>
+    <input type="text" id="taskInput" placeholder="Введите задачу">
+    <button id="addTaskButton">Добавить задачу</button>
+    
+    <div id="taskListContainer">
+    <h3>Список задач</h3>
+    <ul id="taskList"></ul>
+    <p id="noTasksMessage" class="hidden">Задачи отсутствуют</p>
+    <button id="clearTasksButton" class="hidden">Очистить список</button>
+    </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const taskInput = document.getElementById('taskInput');
+    const addTaskButton = document.getElementById('addTaskButton');
+    const taskList = document.getElementById('taskList');
+    const noTasksMessage = document.getElementById('noTasksMessage');
+    const clearTasksButton = document.getElementById('clearTasksButton');
+
+    // Загрузка задач из Local Storage
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    renderTasks();
+
+    addTaskButton.addEventListener('click', () => {
+        const taskText = taskInput.value.trim();
+        if (taskText) {
+        tasks.push({ text: taskText, completed: false });
+        taskInput.value = '';
+        saveTasks();
+        renderTasks();
+        }
+    });
+
+    clearTasksButton.addEventListener('click', () => {
+        tasks = [];
+        saveTasks();
+        renderTasks();
+    });
+
+    function renderTasks() {
+        taskList.innerHTML = '';
+        if (tasks.length === 0) {
+        noTasksMessage.classList.remove('hidden');
+        clearTasksButton.classList.add('hidden');
+        } else {
+        noTasksMessage.classList.add('hidden');
+        clearTasksButton.classList.remove('hidden');
+        tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+            li.innerHTML = `
+            <input type="checkbox" id="task-${index}" ${task.completed ? 'checked' : ''}>
+            <label for="task-${index}" class="${task.completed ? 'completed' : ''}">${task.text}</label>
+            <button class="deleteButton" data-index="${index}">Удалить</button>
+            `;
+    taskList.appendChild(li);
+
+// Обработчик для чекбокса
+    li.querySelector('input[type="checkbox"]').addEventListener('click', () => {
+    task.completed = !task.completed;
+    saveTasks();
+    renderTasks();
+    });
+
+// Обработчик для кнопки удаления
+    li.querySelector('.deleteButton').addEventListener('click', () => {
+    tasks.splice(index, 1);
+    saveTasks();
+    renderTasks();
+    });
+    });
+    }
+    }
+
+    function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+});
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let x=5;
+function addFive(num){
+    return num+5;
+}
+x=(x++,x=addFive(x),x*=2,x-=5,x+=10);
+console.log(x);
+
+let arr=[1,2,3,4,5];
+let newArr=arr.filter(num=>num>2).map(num=>num*2);
+console.log(newArr);
+</script>
+</body>
+</html>

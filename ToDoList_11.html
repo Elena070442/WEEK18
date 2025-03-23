@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/ToDoLis.css">
+    <title>Список задач</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body class="page">
+    <main class="main">
+        <div class="container"><h1>Планировщик задач</h1></div>
+
+    <div>
+    <input type="text" id="taskInput" placeholder="Введите задачу">
+    <button id="addTaskButton">Добавить задачу</button>
+    <div id="taskListContainer">
+        <h2>Список задач</h2>
+        <ul id="taskList"></ul>
+        <p id="noTasksMessage" class="hidden">Задачи отсутствуют</p>
+        <button id="clearTasksButton" class="hidden">Очистить список</button>
+    </div>
+    </div>
+
+    <script>
+        // Получаем необходимые элементы DOM
+        function createTask() {
+            const taskList = document.getElementById('taskList');
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+
+        // Получаем значение, введенное в поле ввода
+        const newTask = document.createElement('li');
+        newTask.textContent = taskText;
+
+        // Устанавливаем текст задачи внутри созданного элемента списка
+        taskText && taskList.append(newTask);
+
+         //Очищаем поле ввода после добавления задачи
+        taskInput.value = '';
+        }
+
+        function checkTask(event) {
+
+        // const addTaskButton = document.getElementById('addTaskButton');
+        // const taskList = document.getElementById('taskList');
+
+        // Добавляем проверку, чтобы выполнить определенные действия с элементом li
+        const isListItem = event.target.tagName === 'LI';
+        // Переключаем состояние выполнения задачи, добавляя или удаляя класс у элемента списка
+        isListItem && event.target.classList.toggle('completed');
+        }
+        // Добавляем функцию-обработчик к событию клика на кнопку
+        addTaskButton.addEventListener('click', createTask);
+        
+        // Добавляем функцию-обработчик к событию клика на список задач
+        taskList.addEventListener('click', checkTask);
+    </script>
+    </main>
+</body>
+</html>

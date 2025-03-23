@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        Создайте функцию makeTwo, которая сохраняет в Local Storage строку "7,6,5". Ключ назовите numbers. После чего вызовите функцию.
+    </p>
+    <script>
+        function makeTwo() {
+  window.localStorage.setItem("numbers","7,6,5")
+  console.log('Строка "7,6,5" была записана в Local Storage.')
+}
+makeTwo()
+    </script>
+    <p>
+        Создайте функцию makeFive, создайте в ней переменную key, в которую поместите строковое значение 'item', добавьте в Local Storage значение null, а ключ заберите из переменной key и вызовите функцию.
+        </p>
+        <script>
+            function makeFive() {
+  let key='item'
+  localStorage.setItem(key,null)
+}
+makeFive()
+            </script>
+            <p>
+                Создайте функцию makeSix, которая сохраняет в Local Storage по ключу objectSix объект obj = { name: "Алиса", age: 30 }. Для преобразования объекта в строку используйте метод JSON.stringify()
+                </p>
+                <script>
+                    function makeSix() {
+  const obj=JSON.stringify({name:"Флиса",age:30})
+  localStorage.setItem("objectSix",obj)
+  
+}
+makeSix()
+function makeSix() {
+    // Создаем объект
+    var obj = { name: "Алиса", age: 30 };
+    
+    // Преобразуем объект в строку и сохраняем в Local Storage
+    localStorage.setItem('objectSix', JSON.stringify(obj));
+}
+
+// Вызываем функцию
+makeSix();
+                    </script>
+<p>
+    Создайте функцию makeEleven, которая сохраняет в Local Storage по ключу arrayEleven массив arr = [
+{ name: "Алиса", age: 30 },
+{ name: "Филин", age: 35 },
+{ name: "Кот", age: 40 }
+]. Вызовите функцию
+Подсказка: Для преобразования массива в строку используйте метод JSON.stringify()
+    </p>
+<script>
+    function makeEleven() {
+const arr=JSON.stringify([{ name: "Алиса", age: 30 },
+{ name: "Филин", age: 35 },
+{ name: "Кот", age: 40 }
+])
+localStorage.setItem("arrayEleven",arr)
+}
+makeEleven()
+    </script>
+    <p>
+        Вам нужно будет создать две функции: addLocalStorageEleven и renderLocalStorage.
+Функция addLocalStorageEleven должна записать в localStorage arr = [
+{ name: "Алиса", age: 30 },
+{ name: "Филин", age: 35 },
+{ name: "Кот", age: 40 }
+] под ключом arrTwelve.
+После чего создаем вторую функциию renderLocalStorage.
+Она должна находить span c классом practicum12, который чуть ниже задания, и в него с помощью метода TextContent должно записываться имя пользователя из localStorage name первого пользователя из массива .
+Вызываем функцию addLocalStorageEleven renderLocalStorage и нажимаем кнопку Проверить.
+
+Подсказки :
+-не перепутайте последовательность вызова функций, сначала записываем в localStorage, потом забираем.
+-для того, чтобы записать данные, оборачиваем в JSON.stringify, для того, чтобы с полученными данными работать - JSON.parse.
+
+<span class="practicum12">Тут должен быть ваш текст</span>
+    </p>
+    <script>
+        function addLocalStorageEleven(){
+	const arr = [
+                { name: "Алиса", age: 30 },
+                { name: "Филин", age: 35 },
+                { name: "Кот", age: 40 }
+            ]
+localStorage.setItem('arrTwelve', JSON.stringify(arr))
+}
+function renderLocalStorage(){
+    //получаем данные из localStorage
+	const storedData = localStorage.getItem('arrTwelve')
+if (storedData){
+    const arr=JSON.parse(storedData)
+    //// Находим span с классом practicum12
+    const spanElement = document.querySelector('.practicum12')
+    if (spanElement&&arr.length>0){
+        //// Записываем имя первого пользователя в span
+    spanElement.textContent = arr[0].name
+    }
+}
+}
+
+addLocalStorageEleven()
+renderLocalStorage()
+    </script>
+    <P>
+        Функция addLocalStorage записывает массив в localStorage под ключом arrLocal.
+Ваша задача создать функцию showTen, которая получит из Local Storage сохраннённый массив.
+Найти элемент с классом practicum13 и записать в него все элементы из массива через запятую.
+Подсказка: Для преобразования строки в объект используйте метод JSON.parse(). Для преобразования массива в нужную строку используйте метод join().
+
+ <div class="pr"><span class="practicum13"></span></div>
+яблоко,банан,апельсин
+    </P>
+    <script>
+        function  addLocalStorage() {
+	localStorage.setItem('arrLocal',JSON.stringify(["яблоко","банан","апельсин"]))
+}
+
+function showTen(){
+	const storedData=localStorage.getItem('arrLocal')
+if(storedData){
+    const arr=JSON.parse(storedData)
+    const spanElement=document.querySelector('.practicum13')
+    if(spanElement){
+    spanElement.textContent=arr.join(',')
+    }
+    
+}
+}
+addLocalStorage()
+showTen()
+    </script>
+    <p>
+        У вас есть функция addLocalStorage, которая записывает в localStorage массив.
+Нужно создать функцияю calcArr, которая будет получать массив из localStorage.
+Получить сумму элементов массива и записать его в тег span c классом practicum14.
+Подсказка: для преобразования строки в объект используйте метод JSON.parse(). Для работы с массивом используйте циклы.
+
+ <div class="pr"><span class="practicum14"></span></div>
+ function addLocalStorage (){
+	localStorage.setItem("arrLocal",JSON.stringify([1,2,3,4,5]));
+}
+function calcArr(){
+//ваш код
+}
+addLocalStorage()
+calcArr()
+        </p>
+<script>
+    function addLocalStorage() {
+    localStorage.setItem("arrLocal", JSON.stringify([1, 2, 3, 4, 5]));
+}
+
+function calcArr() {
+    // Получаем строку из localStorage
+    const arrString = localStorage.getItem("arrLocal");
+    
+    // Преобразуем строку в массив
+    const arr = JSON.parse(arrString);
+    
+    // Инициализируем переменную для суммы
+    let sum = 0;
+    
+    // Считаем сумму элементов массива
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    
+    // Находим элемент span с классом practicum14 и записываем в него сумму
+    const spanElement = document.querySelector('.practicum14');
+    spanElement.textContent = sum;
+}
+
+// Вызываем функции
+addLocalStorage();
+calcArr();
+////
+function addLocalStorage (){
+	localStorage.setItem("arrLocal",JSON.stringify([1,2,3,4,5]));
+}
+function calcArr(){
+const arr = JSON.parse(localStorage.getItem('arrLocal'))
+let count =0;
+arr.forEach(item =>{
+	count +=item
+})
+document.querySelector('.practicum14').textContent = count
+}
+addLocalStorage()
+calcArr()
+    </script>
+
+
+    <p>
+        У вас есть функция addLocalStorage, которая записывает обьект в Local Storage под ключом objLoсal
+Вам нужно получить этот обьект и вывести строку в тег span с классом practicum15 а таком формате:
+name:Cat; age:20; work:ItGirls
+Не забываем про методы parse и stringify, для преобразования обьекта в нужную строчку используем цикл for in.       
+</p>
+<script>
+    function addLocalStorageSet() {
+  localStorage.setItem(
+    "objLoсal",
+    JSON.stringify({ name: "Cat", age: 20, work: "ItGirls" })
+  );
+}
+function renderUser() {
+  const obj = JSON.parse(localStorage.getItem("objLoсal"));
+  let str = "";
+  for (let key in obj) {
+    str += `${key}: ${obj[key]};`;
+  }
+  document.querySelector(".practicum15").textContent = str;
+}
+addLocalStorageSet();
+renderUser();
+    </script>
+
+<p>
+    У вас есть функция addLocalStorageSixteen, которая запиcывает в localStorage обьект под ключом objLocal.
+В функции renderString вам нужно в переменной obj получить обьект из localStorage.
+Найти тег span по классу practicum16 и поместить туда такую строку 'Город Лондон имеет население 8900000 человек'
+Лондон и 8900000 должны подставляться из обьекта с Local Storage как переменные в строку.
+Подсказка: Для склеивания строки лучше всего использоваьть шаблонные строки.
+function addLocalStorageSixteen() {
+  localStorage.setItem(
+    "objLocal",
+    JSON.stringify({
+      city: "Лондон",
+      country: "Великобритания",
+      population: 8900000,
+      language: "английский",
+    })
+  );
+}
+
+    </p>
+<script>
+    function addLocalStorageSixteen() {
+localStorage.setItem(
+    "objLocal",
+    JSON.stringify({
+    city: "Лондон",
+      country: "Великобритания",
+      population: 8900000,
+      language: "английский",
+    })
+);
+}
+
+function renderString (){
+const objString = localStorage.getItem("objLocal")
+const obj = JSON.parse(objString)
+const resultString=`Город ${obj.city}имеет население${obj.population}человек`
+document.querySelector(".practicum16").textContent=resultString
+}
+addLocalStorageSixteen()
+renderString()
+    </script>
+<p>
+    Написана функция addToNumbers, которая находит инпут на странице и забирает с него то, что ввел пользователь.
+Эти данные она округляет до целого числа с помощью parseInt и записывает в переменную number.
+Если данные не были введены, то функция не сработает, для этого там стоит одно из условий.
+Для вас написано условие, которое проверяет, есть ли в localStorage массив с числами под ключом task19 или нет.
+В переменной arr записывается результат поиска этого массива.
+Ваша задача написать условие: если этого массива нет, то создать его, положить туда число, что ввел пользователь и записать в localStorage под ключом task19.
+Если этот массив там есть, то нужно обратиться к нему и записать туда новое число, и этот измененный массив с новым числом записать в localStorage.
+После того как напишете код, введите в input число и нажмите кнопку проверить.
+function addToNumbers() {
+	//поиск input
+  const numberInput = document.getElementById("numberInput");
+  //округление до целого числа
+  const number = parseInt(numberInput.value);
+  // условие на заполнение инпута
+  if (number) {
+	// получение данных из local storage по ключу task19
+    const arr = JSON.parse(localStorage.getItem("task19"));
+	//условие на проверку есть ли в localStorage нужный нам массив
+    if (arr) {
+		///ВАШ КОД
+    } else {
+		///ВАШ КОД
+    }
+	//очистка инпута
+    numberInput.value = "";
+  }
+}
+
+addToNumbers();
+    </p>
+<script>
+    function addToNumbers() {
+    // Поиск input
+    const numberInput = document.getElementById("numberInput");
+    // Округление до целого числа
+    const number = parseInt(numberInput.value);
+    // Условие на заполнение инпута
+    if (number) {
+        // Получение данных из local storage по ключу task19
+        const arr = JSON.parse(localStorage.getItem("task19"));
+        // Условие на проверку есть ли в localStorage нужный нам массив
+        if (arr) {
+            // Если массив существует, добавляем новое число
+            arr.push(number);
+            // Сохраняем измененный массив обратно в localStorage
+            localStorage.setItem("task19", JSON.stringify(arr));
+        } else {
+            // Если массива нет, создаем новый массив с введенным числом
+            const newArr = [number];
+            // Сохраняем новый массив в localStorage
+            localStorage.setItem("task19", JSON.stringify(newArr));
+        }
+        // Очистка инпута
+        numberInput.value = "";
+    }
+}
+
+// Пример вызова функции (например, по нажатию кнопки)
+document.getElementById("checkButton").addEventListener("click", addToNumbers);
+function addToNumbers() {
+  const numberInput = document.getElementById("numberInput");
+  const number = parseInt(numberInput.value);
+  if (number) {
+    const arr = JSON.parse(localStorage.getItem("task19"));
+    if (arr) {
+      arr.push(number);
+      localStorage.setItem("task19", JSON.stringify(arr));
+    } else {
+      const arr = [];
+      arr.push(number);
+      localStorage.setItem("task19", JSON.stringify(arr));
+    }
+    numberInput.value = "";
+  }
+}
+addToNumbers();
+    </script>
+
+<p> 20
+    Создайте функцию removeLastElement, которая получает массив из localStorage под ключом task19 и записывает его в переменную
+После получения массива функция должна удалять последний элемент массива и возвращать обновленный массив в localStorage под тем же ключом
+Важно предусмотреть условия, если в массиве больше нет элементов и он пуст, функция не должна сработать, для удаления используйте метод pop.
+    </p>
+<script>
+    function removeLastElement() {
+  const arr = JSON.parse(localStorage.getItem("task19"))
+  if (arr.length === 0) {
+    console.log("Ваш массив пуст");
+  } else {
+    arr.pop();
+  }
+  localStorage.setItem("task19", JSON.stringify(arr));
+}
+removeLastElement()
+    </script>
+
+<script> очистка массива
+function clearArr() {
+localStorage.setItem("task23", JSON.stringify([]));
+}
+clearArr()
+</script>
+
+<p>
+    У вас есть две функции: createUser, в которой вы должны создать обьект любого пользователя и в нем обязательно должны быть поля: nameUser,ageUser, workUser, emailUser, phoneUser.
+Этот объект вы должны записать в localStorage под ключом objLocalUser.
+Поля не должны оставаться пустыми, их нужно заполнить рандомной информацией.
+И функция renderCardUser, в ней вы должны получить обьект этого пользователя из localStorage.
+
+После чего найти div с классом practicum17 и положить туда с помощью метода innerHTML шаблонную строку.
+Шаблонная строка должна содержать в себе верстку, где userName является заголовком первого порядка, а остальные данные должны быть обернуты в тег <p></p>.
+
+Результат, как должно получиться:
+Cat
+Возраст:30 лет
+Место работы:itGirls
+Почта:catEmail@gamil.com
+Номер телефона:+7946138520
+
+ <div class="practicum17"></div> 
+</p>
+<script>
+    function createUser() {
+    // Генерация случайных данных для пользователя
+    const user = {
+        nameUser: "Cat",
+        ageUser: Math.floor(Math.random() * 50) + 18, // Возраст от 18 до 67
+        workUser: "itGirls",
+        emailUser: "catEmail@gmail.com",
+        phoneUser: `+7${Math.floor(Math.random() * 9000000000 + 100000000)}` // Генерация номера телефона
+    };
+
+    // Сохранение объекта пользователя в localStorage
+    localStorage.setItem("objLocalUser", JSON.stringify(user));
+}
+
+function renderCardUser() {
+    // Получаем объект пользователя из localStorage
+    const user = JSON.parse(localStorage.getItem("objLocalUser"));
+
+    // Проверяем, существует ли пользователь
+    if (user) {
+        // Находим div с классом practicum17
+        const userContainer = document.querySelector('.practicum17');
+
+        // Создаем шаблонную строку с данными пользователя
+        const userCard = `
+            <h1>${user.nameUser}</h1>
+            <p>Возраст: ${user.ageUser} лет</p>
+            <p>Место работы: ${user.workUser}</p>
+            <p>Почта: ${user.emailUser}</p>
+            <p>Номер телефона: ${user.phoneUser}</p>
+        `;
+
+        // Записываем верстку в div
+        userContainer.innerHTML = userCard;
+    } else {
+        console.log("Пользователь не найден в localStorage.");
+    }
+}
+
+// Пример вызова функций
+createUser(); // Создаем пользователя
+renderCardUser(); // Отображаем информацию о пользователе
+
+function createUser() {
+  const objUser = {
+    nameUser: "Cat",
+    ageUser: 30,
+    workUser: "ItGirls",
+    emailUser: "catEmail@gamil.com",
+    phoneUser: "+7946138520",
+  };
+  localStorage.setItem("objLocalUser", JSON.stringify(objUser));
+}
+function renderCardUser () {
+  const obj = JSON.parse(localStorage.getItem('objLocalUser'))
+  document.querySelector('.practicum17').innerHTML = 
+  `<h1>${obj.nameUser}</h1>
+	<p>Возраст:${obj.ageUser}</p>
+	<p>Место работы:${obj.workUser}</p>
+	<p>Почта:${obj.emailUser}</p>
+	<p>Номер телефона:${obj.phoneUser}</p>
+  `
+};
+createUser()
+renderCardUser()
+    </script>
+<p>
+    У вас есть функция addToCart, она должна:
+- Забрать данные из localStorage и записать их в переменную arr под ключом cartItems.
+- Если в localStorage не окажется такого ключа, то нужно вывести в консоль сообщение о том, что такой переменной не существует и остановить функцию.
+-После чего нужно найти инпут и также написать условие, если на момент выполнения функции input будет пустым, то вывести в консоль фразу о том что нужно заполнить input и остановить функцию.
+- Если все хорошо и все условия соблюдены, то нужно записать те данные, которые ввел пользователь в инпуты нашего массив arr.
+- Обновленный массив записать в localStorage под тем же ключом.
+
+Порядок действий проверки задания:
+1.Написать рабочую функцию.
+2.Заполнить input.
+3.Нажать кнопку 'проверить(сохранить)'.
+Задание будет считаться выполненым, если не сработало ни одно условие, а в массив записались данные из инпута.
+Подсказки :
+-добавлять элемент нужно через метод push.
+- return останавливает функцию.
+
+ <div class='html' >
+  <input type="text" id="task21" placeholder="Введите наименование товара" />
+ </div>
+ function addToCart(){
+	const arr =// забираем данные из localStorage
+	if(){//добавляем проверку переменной arr
+		///в консоль вывыодим фразу, что такого массива не существует
+		//останавливаем функцию
+	}
+	const inputPage = ///находим инпут
+	const inputValue = //забираем данные из инпута, которые ввел пользователь
+	if(){ //добавляем проверку пустой инпут или нет
+		//выводим сообщение в консоль о том, что не были введены данные в инпут
+		//останавливаем функцию
+	}
+	// добавляем элемент в массив
+	// записываем измененный массив в localStorage
+}
+
+addToCart()
+    </p>
+    <script>
+        function addToCart(){
+	const arr =JSON.parse(localStorage.getItem("cartItems"))
+	if(!arr){
+      console.log('Такого массива не существует')
+      return
+	}
+	const inputPage = document.querySelector("#task21")
+	const inputValue = inputPage.value
+	if(!inputValue){
+      console.log('Пожалуйста,заполните input')
+      return
+		}
+	arr.push(inputValue)
+      localStorage.setItem("cartItems", JSON.stringify(arr))
+}
+
+addToCart()
+
+function addToCart(){
+	const arr = JSON.parse(localStorage.getItem('cartItems'))
+	if(!arr){
+		console.log('в localStorage такого массива нету.')
+		return
+	}
+	const input = document.querySelector('#task21')
+	if(input.value.trim() === ''){
+		console.log('введите значение в input')
+		return
+	}
+	arr.push(input.value)
+	localStorage.setItem('cartItems',JSON.stringify(arr))
+}
+addToCart()
+        </script>
+<p>
+    У нас есть функция removeToCart, она должна:
+-Получать данные из LocalStorage по ключу 'task22'
+-Останавливать свою работу, если данных нет по этому ключу.
+-После проверки данных, функция должна находить selector по id и забирать его значение.
+-Необходимо дописать условие, что если пользователь не выбрал нужный индекс в селекторе, то функцию также нужно остановить.
+-Дальше функция с помощью метода filter удаляет элемент согласно выбранному index в селекторе.
+-После она должна записать новый масссив под тем же ключом в localStorage.
+
+    <div class="html">
+      <select id="task22">
+        <option value="" hidden>
+          Укажите нужный индекс для удаление элемента из массива
+        </option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div> 
+    function removeToCart(){
+	const arr = //получаем массив из localStorage
+	if(){ //пишем условия, при котором функция перестанет работать, если массива нет в localStorage
+		 console.log()// сообщение о том что массив отсутствует
+		 /// остановка функции
+	}
+	const valueId = ///находим нужный селектор и получаем его значение
+	if()///проверяем выбрал ли пользователь индекс элемента.
+	const newArr = arr.filter((item,index)=> index  !== +valueId) //логика удаления элемента из массива.
+	///записываем новый массив в localstorage под тем же ключом.
+}
+</p>
+<script>
+    function removeToCart() {
+    // 1. Получаем массив из localStorage
+    const arr = JSON.parse(localStorage.getItem('task22'));
+
+    // 2. Проверяем, существует ли массив
+    if (!arr) {
+        console.log('Массив отсутствует в localStorage');
+        return; // Останавливаем функцию
+    }
+
+    // 3. Находим нужный селектор и получаем его значение
+    const valueId = document.getElementById('task22').value;
+
+    // 4. Проверяем, выбрал ли пользователь индекс элемента
+    if (valueId === "") {
+        console.log('Пожалуйста, выберите индекс элемента для удаления');
+        return; // Останавливаем функцию
+    }
+
+    // 5. Логика удаления элемента из массива
+    const newArr = arr.filter((item, index) => index !== +valueId);
+
+    // 6. Записываем новый массив в localStorage под тем же ключом
+    localStorage.setItem('task22', JSON.stringify(newArr));
+}
+
+// Пример вызова функции
+removeToCart();
+
+function removeToCart() {
+  const arr = JSON.parse(localStorage.getItem("task22"));
+  if (!arr) {
+    console.log("такого массива не существует.");
+    return;
+  }
+  const valueId = document.querySelector("#task22").value;
+  if (valueId === "") {
+    console.log("не выбран index");
+    return;
+  }
+  const newArr = arr.filter((item, index) => index !== +valueId);
+  localStorage.setItem("task22", JSON.stringify(newArr));
+}
+removeToCart();
+    </script>
+    <p>
+        У нас есть функция addNewUserLocalStorage, она должна:
+-Находить форму с помощью id task23 и записать в переменную myForm
+-Забрать из localStorage массив и записать его в переменную arr
+- Воспользоваться классом myForm и получить эту форму
+-Создать пустой обьект user и с помощью цикла for of перебрать объект, который мы получили от класса FormData
+-Внутри цикла написать условие, которое будет заканчивать цикл, если хотя бы одно из полей формы будет не заполнено и выводить в консоль сообщение об этом. Если мы зашли в это условие, функция также должна прекращать свою работу.
+- Полученный обьект добавить в конец массива arr и записать arr в localStorage под ключом 'task23'.
+
+    <div class="html">
+      <form id="task23">
+        <label>User name</label>
+        <input type="text" name="user-name" />
+        <label>Email</label>
+        <input type="email" name="email" />
+        <label>Password</label>
+        <input type="password" name="password" />
+        <label>id</label>
+        <input type="number" name="userId" />
+      </form>
+    </div>
+    function addNewUserLocalStorage(){
+	const myForm = ////получаем форму по айди
+	const arr =  ///получаем данные из localStorage.
+	const user = {} //объект, в который будем складывать данные из формы 
+	const formData = new FormData(myForm) // получаем обьект формы
+	for(let [name,value] of formData){
+		//создаем условие, при котором цикл и форма должны останавливаться и в случае выполнение условия выводим сообщение в консоль.
+		//заполняем обьект данными из формы
+	}
+	//добавляем в полученный массив новый обьект
+	//записываем в localStorage
+}      
+</p>
+<script>
+    function addNewUserLocalStorage() {
+    // 1. Получаем форму по id
+    const myForm = document.getElementById('task23');
+
+    // 2. Получаем данные из localStorage
+    const arr = JSON.parse(localStorage.getItem('task23')) || []; // Если данных нет, создаем пустой массив
+
+    // 3. Создаем пустой объект для пользователя
+    const user = {};
+
+    // 4. Получаем объект формы
+    const formData = new FormData(myForm);
+
+    // 5. Перебираем объект FormData
+    for (let [name, value] of formData) {
+        // 6. Проверяем, заполнено ли поле
+        if (!value) {
+            console.log(`Поле "${name}" не заполнено.`);
+            return; // Останавливаем выполнение функции
+        }
+        // Заполняем объект данными из формы
+        user[name] = value;
+    }
+
+    // 7. Добавляем новый объект в массив
+    arr.push(user);
+
+    // 8. Записываем обновленный массив в localStorage
+    localStorage.setItem('task23', JSON.stringify(arr));
+}
+
+// Пример вызова функции
+addNewUserLocalStorage();
+    </script>
+</body>
+</html>
